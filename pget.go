@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
-	"strings"
+	// "strings"
 	"time"
 )
 
@@ -58,12 +58,12 @@ func fetch(id int, url string, ch chan<- string) {
 
 	// Determined the response type and print message accordingly
 	var suffix string
-	if strings.Contains(mimeType, "text") {
-		suffix = string(bytes)
-	} else {
+	// if strings.Contains(mimeType, "text") {
+	// 	suffix = string(bytes)
+	// } else {
 		nbytes := len(bytes)
 		suffix = fmt.Sprintf(" %dKB downloaded (%s)", nbytes/1024, mimeType)
-	}
+	// }
 	secs := time.Since(start)
 	ch <- fmt.Sprintf("Thread %v finished in %v: %s", id, secs, suffix)
 }
